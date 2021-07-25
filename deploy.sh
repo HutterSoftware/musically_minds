@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo docker cp server/ cc-support-center-api:/usr/src/app/
+sudo docker cp server/ musically_minds:/usr/src/app/

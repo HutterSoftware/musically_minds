@@ -3,6 +3,7 @@ MAINTAINER "Benedikt Hutter<benedikt.hutter5@gmail.com>"
 EXPOSE 80
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
+
 # Install software
 RUN apt update
 RUN apt upgrade -y
@@ -12,11 +13,9 @@ RUN apt install php-mysql -y
 RUN apt install vim -y
 RUN apt install php-ldap -y
 RUN apt install php-curl -y
+RUN apt install mariadb-server -y
 RUN mkdir /etc/nginx/snippets/
-# Set mounting point
-RUN mkdir /data
-RUN chown www-data:www-data /data
-VOLUME /data
+
 # Update PHP configuration files
 COPY server-configuration/www.conf /etc/php/7.3/fpm/pool.d/
 COPY server-configuration/fastcgi.conf /etc/nginx/
