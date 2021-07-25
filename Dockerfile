@@ -1,6 +1,6 @@
 FROM nginx:stable-perl as musically_minds
 MAINTAINER "Benedikt Hutter<benedikt.hutter5@gmail.com>"
-EXPOSE 80
+EXPOSE 80 3306
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
@@ -14,6 +14,7 @@ RUN apt install vim -y
 RUN apt install php-ldap -y
 RUN apt install php-curl -y
 RUN apt install mariadb-server -y
+RUN apt install mariadb-client -y
 RUN mkdir /etc/nginx/snippets/
 
 # Update PHP configuration files
@@ -22,6 +23,8 @@ COPY server-configuration/fastcgi.conf /etc/nginx/
 COPY server-configuration/fastcgi-php.conf /etc/nginx/snippets
 COPY server-configuration/default.conf /etc/nginx/conf.d/
 COPY server-configuration/php.ini /etc/php/7.3/fpm/
+
 COPY . .
+
 RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT ["./docker-entrypoint.sh"]
