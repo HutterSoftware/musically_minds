@@ -1,0 +1,7 @@
+{
+  "register-user": "insert into user(username, password, email) values(?,?,?)",
+  "get-password-hash-by-username": "select password from user where username = ?",
+  "set-session-hash": "update user set sessionkey = ? where username = ?",
+  "exist-session-hash": "select * from user where sessionkey = ?",
+  "remove-session-hash": "update user set sessionkey = \"\" where sessionkey = ?"
+}

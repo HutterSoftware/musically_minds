@@ -5,16 +5,17 @@
     <title>musically_minds</title>
   </head>
   <body>
-    <form action="/php/login.php" method="post">
+    <form action="/php/register.php" method="post">
       <label for="username">Benutzername</label>
       <input id="username" name="username">
 
       <label for="password">Passwort</label>
       <input id="password" name="password" type="password">
 
-      <button>Anmelden</button>
-    </form>
+      <label for="email">E-Mail</label>
+      <input id="email" name="email" type="email">
 
-    <a href="register.php">Registrieren</a>
+      <button>Registrieren</button>
+    </form>
   </body>
 </html>
