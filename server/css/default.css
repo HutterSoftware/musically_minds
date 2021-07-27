@@ -1,0 +1,13 @@
+body {
+  margin: 0px;
+  background-color: #BA0025;
+  font-family: sans-serif;
+  color: white;
+}
+
+#header {
+  height: 100px;
+  font-size: 100px;
+  padding: 50px 50px 48px 50px;
+  border-bottom: solid black 2px;
+}

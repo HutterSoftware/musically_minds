@@ -25,24 +25,24 @@ if (sizeof($rows) == 0) {
 
 $passwordHash = $rows[0][0];
 
-if (password_verify($_POST["password"], $passwordHash)) {
-  $cookieValue = microtime() . $_POST["username"] .  $_POST["password"];
-  $cookieHash = hash("sha256", $cookieValue);
-
-  $data = array();
-  array_push($data, $cookieHash);
-  array_push($data, $_POST["username"]);
-  executeQuery("set-session-hash", "ss", $data, DATA_NO);
-
-  $cookieExpiration = json_decode(
-    file_get_contents("../../configuration/general-settings.json")
-  )->{"cookie-expiration"};
-
-  setcookie("musically_minds", $cookieHash, time() + $cookieExpiration, "/");
-
-  header("Location: /main.php", 200);
-} else {
+if (!password_verify($_POST["password"], $passwordHash)) {
   header("Location: /", 200);
 }
+
+$cookieValue = microtime() . $_POST["username"] .  $_POST["password"];
+$cookieHash = hash("sha256", $cookieValue);
+
+$data = array();
+array_push($data, $cookieHash);
+array_push($data, $_POST["username"]);
+executeQuery("set-session-hash", "ss", $data, DATA_NO);
+
+$cookieExpiration = json_decode(
+  file_get_contents("../../configuration/general-settings.json")
+)->{"cookie-expiration"};
+
+setcookie("musically_minds", $cookieHash, time() + $cookieExpiration, "/");
+
+header("Location: /band-list.php", 200);
 
 ?>
