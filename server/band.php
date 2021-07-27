@@ -21,6 +21,11 @@ chdir("../");
     <title>musically_minds</title>
   </head>
   <body>
+    <?
 
+    require_once("./php/utils/design.php");
+    printHeader();
+
+    ?>
   </body>
 </html>

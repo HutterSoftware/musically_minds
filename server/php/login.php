@@ -40,7 +40,7 @@ if (password_verify($_POST["password"], $passwordHash)) {
 
   setcookie("musically_minds", $cookieHash, time() + $cookieExpiration, "/");
 
-  header("Location: /main-page.php", 200);
+  header("Location: /main.php", 200);
 } else {
   header("Location: /", 200);
 }
