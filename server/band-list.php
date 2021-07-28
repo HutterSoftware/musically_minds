@@ -8,7 +8,7 @@ $data = array($_COOKIE["musically_minds"]);
 $rows = executeQuery("exist-session-hash", "s", $data, DATA_YES);
 
 if (sizeof($rows) == 0) {
-  //header("Location: /", 200);
+  header("Location: /", 200);
 }
 
  ?>

@@ -4,5 +4,8 @@
   "set-session-hash": "update user set sessionkey = ? where username = ?",
   "exist-session-hash": "select * from user where sessionkey = ?",
   "remove-session-hash": "update user set sessionkey = \"\" where sessionkey = ?",
-  "get-bands-of-user": "select band.name from band_member inner join user on band_member.user_id = user.user_id inner join band on band_member.band_id = band.band_id where user.sessionkey = ?"
+  "get-bands-of-user": "select band.name from band_member inner join user on band_member.user_id = user.user_id inner join band on band_member.band_id = band.band_id where user.sessionkey = ?",
+  "get-band-id-by-name": "select band_id from band where name = ?",
+  "add-new-song": "insert into song(name, band_id) values(?,?)",
+  "get-complete-song-list": ""
 }
