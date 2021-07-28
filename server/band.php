@@ -19,7 +19,7 @@ if (sizeof($rows) == 0) {
     <meta charset="utf-8">
     <title>musically_minds</title>
     <link href="/css/default.css" rel="stylesheet" type="text/css">
-    <link href="/css/band.css" rel="stylesheet" type="tex/css">
+    <link href="/css/band.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <?php
@@ -34,11 +34,13 @@ if (sizeof($rows) == 0) {
 
       <?php
 
+
       $data = array($_COOKIE["musically_minds"]);
       $result = executeQuery("get-bands-of-user", "s", $data, DATA_YES);
 
       if (sizeof($result) == 0) {
-          echo "<div id=\"back-to-band-list\" class=\"link-block\"><a href=\"-band-list.php\">Zurück zur Bandübersicht</a></div>";
+          header("Location: /band-list.php", 200);
+          exit(0);
       }
 
       echo "<div class=\"link-block\"><a href=\"/line-up-list.php?band=" . $_GET["band"] . "\">Line Ups</a></div>";
@@ -49,7 +51,18 @@ if (sizeof($rows) == 0) {
 
       echo "<label for=\"new-song-name\">Neuer Songname</label><input id=\"new-song-name\" name=\"new-song-name\"><button>Speichern</button></form></div>";
 
+      echo "<div id=\"song-list\">";
 
+      $data = array($_GET["band"]);
+      $results = executeQuery("get-complete-song-list", "s", $data, DATA_YES);
+
+      foreach ($results as $result) {
+        echo "<div class=\"song-block\"><a href=\"/song.php?band=" . $_GET["band"] .  "&songname=" . $result[0] . "\">" . $result[0] . "</a></div>";
+      }
+
+      echo "<div class=\"link-blick\"><a href=\"/band-list.php\">Zurück</a></div>";
+
+      printLogoutButton();
 
       ?>
 

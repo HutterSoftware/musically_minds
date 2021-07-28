@@ -57,6 +57,8 @@ if (sizeof($rows) == 0) {
           "</a></div>";
       }
 
+      printLogoutButton();
+
       ?>
     </div>
   </body>
