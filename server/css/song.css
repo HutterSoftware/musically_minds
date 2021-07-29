@@ -1,0 +1,9 @@
+.text, .chords, .tab {
+  height: 50px;
+}
+
+.line {
+  margin-bottom: 20px;
+  background-color: white;
+  color: black;
+}

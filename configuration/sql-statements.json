@@ -8,5 +8,6 @@
   "get-band-id-by-name": "select band_id from band where name = ?",
   "add-new-song": "insert into song(name, band_id) values(?,?)",
   "get-complete-song-list": "select song.name from song inner join band on band.band_id = song.band_id where band.name = ?",
-  "remove-sessionkey": "update user set sessionkey=\"\" where sessionkey = ?"
+  "remove-sessionkey": "update user set sessionkey=\"\" where sessionkey = ?",
+  "get-song": "select song_part.line_number, tab.tab_content, song_part.chords, song_part.text from song_part inner join song on song_part.song_id = song.song_id left join tab on song.song_id = tab.song_id and song_part.line_number = tab.line_number where song.name = ? order by song_part.line_number"
 }
