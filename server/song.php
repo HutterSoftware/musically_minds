@@ -49,6 +49,7 @@ if (sizeof($rows) == 0) {
 
       foreach ($completeSong as $songPart) {
         echo "<div class\"line\">";
+        echo "<div class=\"editor\" hidden>" . $songPart[1] . "</div>";
         echo "<div class=\"jtab\">" . $songPart[1] . "</div>";
         echo "<div class=\"chords\">" . str_replace(" ", "&nbsp", $songPart[2]);
           "<div>";
@@ -58,6 +59,7 @@ if (sizeof($rows) == 0) {
 
       echo "</div>";
 
+      echo "<div class=\"line-block\" onclick=\"showCloseEditor()\">Bearbeiten</div>";
       echo "<div class=\"link-block\" onclick=\"addNewLine()\">Neue Zeile</div>";
       echo "<div class=\"link-block\" onclick=\"jtab.renderimplicit();\">Rendern</div>";
       echo "<div class=\"line-block\" onclick=\"saveSong()\">Speichern</div>";
