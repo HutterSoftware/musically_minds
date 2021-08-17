@@ -1,3 +1,5 @@
+var formDataDocument;
+
 function addNewLine() {
   var line = document.createElement("div");
   line.classList.add("line");
@@ -65,4 +67,39 @@ function saveSong() {
 
   requestor.open("POST", "/php/save-song.php", true);
   requestor.send(requestData);
+}
+
+function addDocument() {
+
+  var parameter = window.location.href.split("?")[1].split("&");
+
+  formDataDocument = new FormData();
+
+  for (var i = 0; i < parameter.length; i++) {
+    var parameterSplit = parameter[i].split("=");
+    formDataDocument.append(parameterSplit[0], parameterSplit[1]);
+  }
+
+  formDataDocument.append(
+    "document",
+    document.getElementById("documents").files[0]
+  );
+
+  var requestor = new XMLHttpRequest();
+  /*requestor.onreadstatechange = function() {
+    if (this.readyState === 4) {
+      if (this.status === 200) {
+        alert(this.responseText);
+        /setTimout(
+          function() {
+            //window.location.reload();
+          },
+          10
+        );
+      }
+    }
+  };*/
+
+  requestor.open("POST", "/php/save-document.php", true);
+  requestor.send(formDataDocument);
 }

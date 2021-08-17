@@ -40,12 +40,36 @@ if (sizeof($rows) == 0) {
     <div id="content">
 
       <?php
-      echo "<div id=\"song-title\">" . $_GET["songname"] . "</div>";
+      echo "<div id=\"site-header\" class=\"link-block\">" .
+        $_GET["songname"] .
+        "</div>";
+
+      echo "<div id=\"song\">";
+
+      $data = array($_GET["songname"], $_GET["band"]);
+      $allDocumentsOfSong = executeQuery(
+        "get-documents-of-song",
+        "ss",
+        $data,
+        DATA_YES
+      );
+
+      echo "<div class=\"link-block\">Dokumente</div><div>";
+
+      foreach ($allDocumentsOfSong as $document) {
+        echo "<div class=\"link-block\"><a href=\"/documents/" .
+          $document[3] .
+          "/" .
+          $document[2] .
+          "\">" .
+          $document[2] .
+          "</a></div>";
+      }
+
+      echo "</div>";
 
       $data = array($_GET["songname"]);
       $completeSong = executeQuery("get-song", "s", $data, DATA_YES);
-
-      echo "<div id=\"song\">";
 
       foreach ($completeSong as $songPart) {
         echo "<div class\"line\">";
@@ -59,10 +83,11 @@ if (sizeof($rows) == 0) {
 
       echo "</div>";
 
-      echo "<div class=\"line-block\" onclick=\"showCloseEditor()\">Bearbeiten</div>";
+      echo "<div class=\"link-block\"><label for=\"new-document\">Neues Dokument</label><input id=\"documents\" type=\"file\" accept=\"application/pdf\"><button onclick=\"addDocument()\">Hochladen</button></div>";
+      echo "<div class=\"link-block\" onclick=\"showCloseEditor()\">Bearbeiten</div>";
       echo "<div class=\"link-block\" onclick=\"addNewLine()\">Neue Zeile</div>";
       echo "<div class=\"link-block\" onclick=\"jtab.renderimplicit();\">Rendern</div>";
-      echo "<div class=\"line-block\" onclick=\"saveSong()\">Speichern</div>";
+      echo "<div class=\"link-block\" onclick=\"saveSong()\">Speichern</div>";
 
       printLogoutButton();
 

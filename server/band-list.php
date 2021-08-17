@@ -31,6 +31,7 @@ if (sizeof($rows) == 0) {
     ?>
 
     <div id="content">
+      <div id="site-header">Band Liste</div>
 
       <?php
 

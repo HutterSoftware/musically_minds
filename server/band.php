@@ -43,15 +43,19 @@ if (sizeof($rows) == 0) {
           exit(0);
       }
 
+      echo "<div id=\"site-header\" class=\"link-block\">" . $_GET["band"] . "</div>";
+
       echo "<div class=\"link-block\"><a href=\"/line-up-list.php?band=" . $_GET["band"] . "\">Line Ups</a></div>";
 
-      echo "<div class=\"line-block\"><form action=\"/php/add-new-song.php\" method=\"post\">";
+      echo "<div class=\"link-block\"><form action=\"/php/add-new-song.php\" method=\"post\">";
 
       echo "<input name=\"band-name\" hidden value=\"" .$_GET["band"] . "\">";
 
       echo "<label for=\"new-song-name\">Neuer Songname</label><input id=\"new-song-name\" name=\"new-song-name\"><button>Speichern</button></form></div>";
 
-      echo "<div id=\"song-list\">";
+      echo "<div id=\"songs\" class=\"link-block\">Songs</div>";
+
+      echo "<div id=\"song-list\" class=\"link-block\">";
 
       $data = array($_GET["band"]);
       $results = executeQuery("get-complete-song-list", "s", $data, DATA_YES);
@@ -60,7 +64,7 @@ if (sizeof($rows) == 0) {
         echo "<div class=\"song-block\"><a href=\"/song.php?band=" . $_GET["band"] .  "&songname=" . $result[0] . "\">" . $result[0] . "</a></div>";
       }
 
-      echo "<div class=\"link-blick\"><a href=\"/band-list.php\">Zurück</a></div>";
+      echo "</div><div class=\"link-block\"><a href=\"/band-list.php\">Zurück</a></div>";
 
       printLogoutButton();
 

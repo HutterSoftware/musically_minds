@@ -6,8 +6,11 @@
   "remove-session-hash": "update user set sessionkey = \"\" where sessionkey = ?",
   "get-bands-of-user": "select band.name from band_member inner join user on band_member.user_id = user.user_id inner join band on band_member.band_id = band.band_id where user.sessionkey = ?",
   "get-band-id-by-name": "select band_id from band where name = ?",
+  "get-song-id-by-name": "select song_id from song where name = ?",
   "add-new-song": "insert into song(name, band_id) values(?,?)",
   "get-complete-song-list": "select song.name from song inner join band on band.band_id = song.band_id where band.name = ?",
   "remove-sessionkey": "update user set sessionkey=\"\" where sessionkey = ?",
-  "get-song": "select song_part.line_number, tab.tab_content, song_part.chords, song_part.text from song_part inner join song on song_part.song_id = song.song_id left join tab on song.song_id = tab.song_id and song_part.line_number = tab.line_number where song.name = ? order by song_part.line_number"
+  "get-song": "select song_part.line_number, tab.tab_content, song_part.chords, song_part.text from song_part inner join song on song_part.song_id = song.song_id left join tab on song.song_id = tab.song_id and song_part.line_number = tab.line_number where song.name = ? order by song_part.line_number",
+  "get-documents-of-song": "select band.name, song.name, song_document.file_name, song_document.md5sum from song_document inner join band on song_document.band_id = band.band_id inner join song on song.song_id = song_document.song_id where band.name = ? and song.name = ?",
+  "save-document": "insert into song_document(band_id, song_id, file_name, md5) values(?,?,?,?)"
 }
